@@ -56,7 +56,7 @@ export default function EditInterest() {
             </div>
           ))}
         </div>
-      </div>
+      </div> 
 
       {/* Input to Add New Interests */}
       <div className="bg-gray-800 p-4 rounded-lg flex items-center space-x-2">
