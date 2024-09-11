@@ -1,9 +1,9 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
-import { useAuth } from './AuthContext';
+
 export default function EditInterest() {
-  const { saveToken } = useAuth();
+
   const router = useRouter();
   // State to hold the interests
   const [interests, setInterests] = useState(['Music', 'Basketball', 'Fitness', 'Gymming']);
