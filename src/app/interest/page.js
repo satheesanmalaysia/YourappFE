@@ -1,7 +1,10 @@
 "use client";
 import { useState } from 'react';
-
+import { useRouter } from 'next/navigation'
+import { useAuth } from './AuthContext';
 export default function EditInterest() {
+  const { saveToken } = useAuth();
+  const router = useRouter();
   // State to hold the interests
   const [interests, setInterests] = useState(['Music', 'Basketball', 'Fitness', 'Gymming']);
   const [newInterest, setNewInterest] = useState('');
@@ -22,6 +25,7 @@ export default function EditInterest() {
   // Function to handle the Save action
   const saveInterests = () => {
     // Save interests to API or update state
+    router.push('/dashboard');
     console.log('Saved Interests:', interests);
   };
 
