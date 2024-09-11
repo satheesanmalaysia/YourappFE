@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { useRouter } from 'next/navigation'
 import { useAuth } from '../AuthContext';
 export default function EditInterest() {
@@ -8,7 +8,42 @@ export default function EditInterest() {
   // State to hold the interests
   const [interests, setInterests] = useState(['Music']);
   const [newInterest, setNewInterest] = useState('');
+  const [profile, setProfile] = useState(null);
+  const [formData, setFormData] = useState({
+    displayName: 'Test',
+    gender: 'Test',
+    birthday: 'test',
+    horoscope: 'Test',
+    zodiac: 'Test',
+    height: '175 cm',
+    weight: '69 kg'
+  });
+  useEffect(() => {
+   
+    // Fetch profile from the API
+    console.log("fetchProfile");
+    async function fetchProfile() {
+  
+      const res = await fetch('https://yourappbe.onrender.com/api/getProfile', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setProfile(data);
+      setFormData(data.profile)
+      setInterests(data.profile.interests)
+    }
+    fetchProfile();
 
+
+  }, []);
+
+  if (!profile) {
+    return <p>Loading...</p>;
+  }
+  // State for form d
   // Function to remove an interest
   const removeInterest = (interestToRemove) => {
     setInterests(interests.filter((interest) => interest !== interestToRemove));
@@ -26,16 +61,25 @@ export default function EditInterest() {
   }
   // Function to handle the Save action
   const saveInterests = () => {
+    const updatedProfile = {
+      ...formData,  // Keep everything else the same
+      interests: interests,  // Update the interests array
+    };
+
+    const dataToSend = {
+      birthday:updatedProfile.birthday,gender:updatedProfile.gender,horoscope:updatedProfile.horoscope,zodiac:updatedProfile.zodiac,height:updatedProfile.height,interests:updatedProfile.interests,weight:updatedProfile.weight
+      // Include only the interests field
+    };
+    const jsonString = JSON.stringify(dataToSend);
     async function updateProfile() {
+
     const res = await fetch('https://yourappbe.onrender.com/api/updateProfile', {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',  // Set content type to JSON
         Authorization: `Bearer ${token}`,    // Attach token in the authorization header
       },
-      body: JSON.stringify({
-        interests: interests  // Only send the interests field
-      }),        
+      body: jsonString  
     });
   
     const data = await res.json();
