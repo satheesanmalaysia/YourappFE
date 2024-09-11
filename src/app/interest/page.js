@@ -33,7 +33,7 @@ export default function EditInterest() {
     <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <button className="text-lg">&#x2190; Back</button>
+        <button onClick={saveInterests} className="text-lg">&#x2190; Back</button>
         <button onClick={saveInterests} className="text-red-500">Save</button>
       </div>
 
