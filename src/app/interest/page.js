@@ -6,7 +6,7 @@ export default function EditInterest() {
   const { token } = useAuth();
   const router = useRouter();
   // State to hold the interests
-  const [interests, setInterests] = useState(['Music', 'Basketball', 'Fitness', 'Gymming']);
+  const [interests, setInterests] = useState(['Music']);
   const [newInterest, setNewInterest] = useState('');
 
   // Function to remove an interest
@@ -21,7 +21,9 @@ export default function EditInterest() {
       setNewInterest('');
     }
   };
-
+  const backButton = () => {
+    router.push('/dashboard');
+  }
   // Function to handle the Save action
   const saveInterests = () => {
     async function updateProfile() {
@@ -46,15 +48,16 @@ export default function EditInterest() {
       alert('error')
     }
     // Save interests to API or update state
-  
+    
   }
+  updateProfile();
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <button onClick={saveInterests} className="text-lg">&#x2190; Back</button>
+        <button onClick={backButton} className="text-lg">&#x2190; Back</button>
         <button onClick={saveInterests} className="text-red-500">Save</button>
       </div>
 

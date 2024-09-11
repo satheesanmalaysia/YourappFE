@@ -49,7 +49,9 @@ export default function Profile() {
   }
   // State for form data
  
-
+  const addImage = ()=>{
+alert('Add image under construction');
+  }
   // Toggle edit mode
   const toggleEdit = () => {
     async function updateProfile() {
@@ -87,7 +89,6 @@ export default function Profile() {
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Header */}
       <div className="flex items-center p-4">
-        <button className="text-lg">&#x2190; Back</button>
         <div className="flex-1 text-center">@{profile.username}</div>
       </div>
 
@@ -96,7 +97,7 @@ export default function Profile() {
         <div className="relative w-full h-40 rounded-lg overflow-hidden bg-gray-700">
           {isEditing ? (
             <div className="flex justify-center items-center w-full h-full">
-              <button className="bg-gray-800 p-2 rounded-lg">Add image</button>
+              <button  onClick={addImage}className="bg-gray-800 p-2 rounded-lg">Add image</button>
             </div>
           ) : (
             <img 
@@ -110,12 +111,12 @@ export default function Profile() {
             <input
               type="text"
               name="displayName"
-              value={profile.username}
+              value={profile.email}
               onChange={handleChange}
               className="bg-gray-800 w-full p-2 rounded-lg"
             />
           ) : (
-            <p>@{profile.username}</p>
+            <p>@{profile.email}</p>
           )}
         </div>
       </div>
@@ -219,6 +220,16 @@ export default function Profile() {
           <h3>Interest</h3>
           <button onClick={()=>{ router.push('/interest'); }}>Edit</button>
         </div>
+        <div className="bg-gray-800 p-4 rounded-lg mb-4">
+        <div className="flex flex-wrap gap-2">
+          {formData.interests.map((interest, index) => (
+            <div key={index} className="flex items-center bg-gray-700 px-3 py-1 rounded-full">
+              <span>{interest}</span>
+             
+            </div>
+          ))}
+        </div>
+      </div>
         <p>Add in your interest to find a better match.</p>
       </div>
     </div>
