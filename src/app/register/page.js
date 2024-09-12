@@ -11,6 +11,19 @@ export default function Register() {
   const router = useRouter();
 
   const handleRegister = async (e) => {
+    if(password!=confirmPassword){
+      alert('Password should match')
+      return;
+    } else {
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long and at least one digit.');
+        return;
+      }
+      if (!/[0-9]/.test(password)) {
+        alert('Password must be at least 8 characters long and at least one digit.');
+        return;
+      }
+    }
     e.preventDefault();
     // Mock API call
     const res = await fetch('https://yourappbe.onrender.com/api/register', {
@@ -41,6 +54,7 @@ export default function Register() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <div className="relative">
@@ -50,6 +64,7 @@ export default function Register() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <div className="relative">
@@ -59,6 +74,7 @@ export default function Register() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <div className="relative">
@@ -68,6 +84,7 @@ export default function Register() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <button

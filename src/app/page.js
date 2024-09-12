@@ -50,6 +50,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <div className="relative">
@@ -59,6 +60,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-3 bg-gray-700 rounded-lg"
+            required
           />
         </div>
         <button
