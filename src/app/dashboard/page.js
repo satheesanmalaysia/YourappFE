@@ -126,9 +126,9 @@ alert('Add image under construction');
         <div className="flex justify-between items-center">
           <h3>About</h3>
           {isEditing ? (
-            <button onClick={toggleEdit}>Save & Update</button>
+            <button className="text-accent" onClick={toggleEdit}>Save & Update</button>
           ) : (
-            <button onClick={toggleEdit}>Edit</button>
+            <button className="text-accent" onClick={toggleEdit}>Edit</button>
           )}
         </div>
 
@@ -204,13 +204,15 @@ alert('Add image under construction');
           </div>
         ) : (
           <div className="mt-4 space-y-2">
-            <p>Gender: {formData.gender}</p>
-            <p>Birthday: {formData.birthday}</p>
-            <p>Horoscope: {formData.horoscope}</p>
-            <p>Zodiac: {formData.zodiac}</p>
-            <p>Height: {formData.height}</p>
-            <p>Weight: {formData.weight}</p>
+            {formData.gender?<p>Gender: {formData.gender}</p>:<></>}
+            {formData.birthday? <p>Birthday: {formData.birthday}</p>:<></>}
+            {formData.horoscope? <p>Horoscope: {formData.horoscope}</p>:<></>}
+            {formData.zodiac? <p>Zodiac: {formData.zodiac}</p>:<></>}
+            {formData.height? <p>Height: {formData.height}</p>:<></>}
+            {formData.weight? <p>Weight: {formData.weight}</p>:<></>}
+            <p>Add About you to know others better</p>
           </div>
+          
         )}
       </div>
 
@@ -218,7 +220,7 @@ alert('Add image under construction');
       <div className="bg-gray-800 rounded-lg p-4 mt-4">
         <div className="flex justify-between items-center">
           <h3>Interest</h3>
-          <button onClick={()=>{ router.push('/interest'); }}>Edit</button>
+          <button className="text-accent" onClick={()=>{ router.push('/interest'); }}>Edit</button>
         </div>
         <div className="bg-gray-800 p-4 rounded-lg mb-4">
         <div className="flex flex-wrap gap-2">
